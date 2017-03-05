@@ -40,8 +40,9 @@ void loop()
 {
   int num;
   int mapChange;
-  num = random(dNum * 1000 + 4000);
-  mapChange = map(num, 1, dNum * 1000 + 4000, 1, dNum);
+  int thouNum = dNum*1000;
+  num = random(thouNum + thouNum*0.66);
+  mapChange = map(num, 1, thouNum + thouNum*0.66, 1, dNum);
 
   if (mapChange == 1)
     one();
