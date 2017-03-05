@@ -60,6 +60,15 @@ void loop()
   
   if (mapChange == 6)
     six();
+
+  if (mapChange == 7)
+    seven();
+
+  if (mapChange == 8);
+    eight();
+
+  if (mapChange == 9);
+    nine();
   
   Serial.print(mapChange);
   Serial.print("\t mapped from: ");
