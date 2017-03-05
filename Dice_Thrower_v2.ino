@@ -41,34 +41,23 @@ void loop()
   mapChange = map(num, 1, 10000, 1, 6);
 
   if (mapChange == 1)
-  {
     one();
-  }
-
+  
   if (mapChange == 2)
-  {
     two();
-  }
 
   if (mapChange == 3)
-  {
     three();
-  }
-
+  
   if (mapChange == 4)
-  {
     four();
-  }
-
+  
   if (mapChange == 5)
-  {
     five();
-  }
-
+  
   if (mapChange == 6)
-  {
     six();
-  }
+  
 
   Serial.print(mapChange);
   Serial.print("\t mapped from: ");
@@ -103,6 +92,21 @@ void four()
   digitalWrite(ledMatrix[0][2], HIGH);
   digitalWrite(ledMatrix[2][2], HIGH);
 }
+
+/* different way of writing four()
+void four()
+{
+  for (int row = 0; row < 3; row++)
+  {
+    if (row == 1)
+    {
+      continue;
+    }
+    digitalWrite(ledMatrix[row][0], HIGH);
+    digitalWrite(ledMatrix[row][2], HIGH);
+  }
+}
+*/
 
 void five()
 {
