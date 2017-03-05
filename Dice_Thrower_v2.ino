@@ -1,6 +1,9 @@
 //Dice Thrower v2
 // in this version it will show the correct form of the pips on the dice
 
+// give dNum the max number of pips you want on your dice
+const int dNum = 9; //as in d18 or d6 or d4
+
 const int ROW_COUNT = 3;
 const int COL_COUNT = 3;
 int ledMatrix[ROW_COUNT][COL_COUNT] =
@@ -37,8 +40,8 @@ void loop()
 {
   int num;
   int mapChange;
-  num = random(9999) + 1;
-  mapChange = map(num, 1, 10000, 1, 6);
+  num = random(dNum * 1000 + 4000);
+  mapChange = map(num, 1, dNum * 1000 + 4000, 1, dNum);
 
   if (mapChange == 1)
     one();
@@ -58,7 +61,6 @@ void loop()
   if (mapChange == 6)
     six();
   
-
   Serial.print(mapChange);
   Serial.print("\t mapped from: ");
   Serial.println(num);
@@ -85,28 +87,26 @@ void three()
   digitalWrite(ledMatrix[0][2], HIGH);
 }
 
-void four()
+/*void four() //one of two ways to write four()
 {
   digitalWrite(ledMatrix[0][0], HIGH);
   digitalWrite(ledMatrix[2][0], HIGH);
   digitalWrite(ledMatrix[0][2], HIGH);
   digitalWrite(ledMatrix[2][2], HIGH);
-}
+}*/
 
-/* different way of writing four()
+//different way of writing four()
 void four()
 {
   for (int row = 0; row < 3; row++)
   {
-    if (row == 1)
-    {
-      continue;
-    }
+    if (row == 1) continue;
+    
     digitalWrite(ledMatrix[row][0], HIGH);
     digitalWrite(ledMatrix[row][2], HIGH);
   }
 }
-*/
+
 
 void five()
 {
@@ -146,6 +146,19 @@ void eight()
   digitalWrite(ledMatrix[0][1], HIGH);
   digitalWrite(ledMatrix[2][1], HIGH);
 }
+
+/*void eight() //different way of writing eight()
+{
+  for (int row = 0; row < 3; row++)
+  {
+    for (int col = 0; col < 3; col++)
+    {
+      if (col == 1 && row == 1) continue;
+      
+      digitalWrite(ledMatrix[row][col], HIGH);
+    }
+  }
+}*/
 
 void nine()
 {
