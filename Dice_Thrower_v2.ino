@@ -2,7 +2,7 @@
 // in this version it will show the correct form of the pips on the dice
 
 // give dNum the max number of pips you want on your dice
-const int dNum = 4; //as in d8 or d6 or d4 CAN'T BE HIGHER THAN 9!
+const int dNum = 6; //as in d8 or d6 or d4 CAN'T BE HIGHER THAN 9!
 
 const int ROW_COUNT = 3;
 const int COL_COUNT = 3;
