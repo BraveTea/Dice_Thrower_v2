@@ -2,7 +2,7 @@
 // in this version it will show the correct form of the pips on the dice
 
 // give dNum the max number of pips you want on your dice
-const int dNum = 6; //as in d8 or d6 or d4 CAN'T BE HIGHER THAN 9!
+const int dNum = 4; //as in d8 or d6 or d4 CAN'T BE HIGHER THAN 9!
 
 const int ROW_COUNT = 3;
 const int COL_COUNT = 3;
@@ -54,26 +54,20 @@ void loop()
   if (mapChange == 3)
     three();
 
-
   if (mapChange == 4)
     four();
-
 
   if (mapChange == 5)
     five();
 
-
   if (mapChange == 6)
     six();
-
 
   if (mapChange == 7)
     seven();
 
-
   if (mapChange == 8)
     eight();
-
 
   if (mapChange == 9)
     nine();
@@ -85,23 +79,27 @@ void loop()
   allOff();
 }
 
+void ledOn(int x, int y) //x == rows, y == cols
+{
+  digitalWrite(ledMatrix[x][y], HIGH);
+}
 
 void one()
 {
-  digitalWrite(ledMatrix[1][1], HIGH);
+  ledOn(1, 1);
 }
 
 void two()
 {
-  digitalWrite(ledMatrix[2][0], HIGH);
-  digitalWrite(ledMatrix[0][2], HIGH);
+  ledOn(2, 0);
+  ledOn(0, 2);
 }
 
 void three()
 {
-  digitalWrite(ledMatrix[1][1], HIGH);
-  digitalWrite(ledMatrix[2][0], HIGH);
-  digitalWrite(ledMatrix[0][2], HIGH);
+  ledOn(1, 1);
+  ledOn(2, 0);
+  ledOn(0, 2);
 }
 
 /*void four() //one of two ways to write four()
@@ -119,27 +117,29 @@ void four()
   {
     if (row == 1) continue;
 
-    digitalWrite(ledMatrix[row][0], HIGH);
-    digitalWrite(ledMatrix[row][2], HIGH);
+    ledOn(row, 0);
+    //digitalWrite(ledMatrix[row][0], HIGH); //original code
+    ledOn(row, 2);
+    //digitalWrite(ledMatrix[row][2], HIGH); //original code
   }
 }
 
 
 void five()
 {
-  digitalWrite(ledMatrix[0][0], HIGH);
-  digitalWrite(ledMatrix[2][0], HIGH);
-  digitalWrite(ledMatrix[0][2], HIGH);
-  digitalWrite(ledMatrix[2][2], HIGH);
-  digitalWrite(ledMatrix[1][1], HIGH);
+  ledOn(0, 0);
+  ledOn(2, 0);
+  ledOn(0, 2);
+  ledOn(2, 2);
+  ledOn(1, 1);
 }
 
 void six()
 {
   for (int row = 0; row < 3; row++)
   {
-    digitalWrite(ledMatrix[row][0], HIGH);
-    digitalWrite(ledMatrix[row][2], HIGH);
+    ledOn(row, 0);
+    ledOn(row, 2);
   }
 }
 
@@ -147,21 +147,21 @@ void seven()
 {
   for (int row = 0; row < 3; row++)
   {
-    digitalWrite(ledMatrix[row][0], HIGH);
-    digitalWrite(ledMatrix[row][2], HIGH);
+    ledOn(row, 0);
+    ledOn(row, 2);
   }
-  digitalWrite(ledMatrix[1][1], HIGH);
+  ledOn(1, 1);
 }
 
 void eight()
 {
   for (int row = 0; row < 3; row++)
   {
-    digitalWrite(ledMatrix[row][0], HIGH);
-    digitalWrite(ledMatrix[row][2], HIGH);
+    ledOn(row, 0);
+    ledOn(row, 2);
   }
-  digitalWrite(ledMatrix[0][1], HIGH);
-  digitalWrite(ledMatrix[2][1], HIGH);
+  ledOn(0, 1);
+  ledOn(2, 1);
 }
 
 /*void eight() //different way of writing eight()
@@ -183,7 +183,7 @@ void nine()
   {
     for (int col = 0; col < 3; col++)
     {
-      digitalWrite(ledMatrix[row][col], HIGH);
+      ledOn(row, col);
     }
   }
 }
